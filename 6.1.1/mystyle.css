@@ -1,0 +1,151 @@
+body {
+    margin: 0;
+    overflow: hidden; /* Ẩn thanh cuộn */
+    height: 100vh;
+}
+
+/* Định dạng chung cho khu vực hồ cá */
+#aquarium-background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Định dạng cho các lớp nền (Yêu cầu nâng cao) */
+.bg-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    z-index: -1; /* Đặt nền ở dưới cùng */
+}
+.bg-layer.active {
+    opacity: 1; /* Hiển thị nền đang hoạt động */
+}
+
+/* Định dạng chung cho các nhân vật */
+#shark, #diver1, #diver2, #diver3, #turtle,#faintSchool, #goldFishSchool {
+    position: absolute;
+    /* Đặt z-index để chúng hiển thị trên các lớp nền */
+    z-index: 10;
+}
+#shark img, #diver1 img, #diver2 img, #diver3 img, #turtle img,#faintSchool img, #goldFishSchool img {
+    /* Đảm bảo ảnh không bị kéo giãn */
+    max-width: 100%; 
+    height: auto;
+}
+
+/* ==================================== */
+/* 1. CÁ MẬP (THEO SÁCH) */
+/* ==================================== */
+#shark {
+    left: 100px;
+    top: 400px;
+    width: 150px;
+    animation-name: Shark;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+}
+
+@keyframes Shark {
+    0% { left: 100px; top: 400px; transform: scaleX(1); }
+    20% { left: 300px; top: 400px; }
+    40% { left: 500px; top: 300px; }
+    50% { left: 600px; top: 50px; }
+    60% { left: 600px; top: 100px; }
+    80% { left: 500px; top: 200px; }
+    99% { left: 100px; top: 400px; transform: scaleX(1); }
+    /* Lật ngược và quay lại vị trí ban đầu */
+    100% { left: 100px; top: 400px; transform: scaleX(-1); } 
+}
+
+/* ==================================== */
+/* 2. THỢ LẶN (BAO GỒM LÊN VÀ XUỐNG) */
+/* ==================================== */
+@keyframes Dive {
+    0% { top: 0px; }
+    50% { top: 550px; }
+    100% { top: 0px; }
+}
+
+#diver1 {
+    left: 800px;
+    top: 50px;
+    width: 100px;
+    animation: Dive 15s ease-in-out infinite; 
+}
+
+#diver2 {
+    left: 950px;
+    top: 300px;
+    width: 100px;
+    animation: Dive 12s linear infinite;
+    animation-delay: 2s; /* Bắt đầu sau 2s */
+}
+
+#diver3 {
+    left: 50px;
+    top: 550px;
+    width: 100px;
+    animation: DiveReverse 18s ease-in-out infinite; 
+}
+
+@keyframes DiveReverse {
+    0% { top: 550px; }
+    50% { top: 0px; }
+    100% { top: 550px; }
+}
+
+
+/* ==================================== */
+/* 3. RÙA (DI CHUYỂN CHẬM) */
+/* ==================================== */
+#turtle {
+    left: 10px;
+    top: 550px;
+    width: 120px;
+    animation: TurtleMove 30s linear infinite; /* Rùa chậm nhất */
+}
+
+@keyframes TurtleMove {
+    0% { left: 10px; transform: scaleX(1); }
+    49% { left: 100%; transform: scaleX(1); }
+    50% { left: 100%; transform: scaleX(-1); } /* Quay đầu */
+    99% { left: 10px; transform: scaleX(-1); }
+    100% { left: 10px; transform: scaleX(1); }
+}
+
+/* ==================================== */
+/* 4. ĐÀN CÁ */
+/* ==================================== */
+#goldFishSchool {
+    left: -30px; 
+    top: 150px;
+    width: 200px;
+    animation: FishSchoolMove 20s linear infinite;
+}
+
+@keyframes FishSchoolMove {
+    0% { left: -30px; transform: scaleX(1); }
+    49% { left: 1070px; transform: scaleX(1); }
+    50% { left: 1070px; transform: scaleX(-1); } /* Quay đầu */
+    100% { left: -30px; transform: scaleX(-1); }
+}
+/* ==================================== */
+/* ̀. BONG BÓNG (CHỈ LÊN) */
+/* ==================================== */
+@keyframes faintSchoolMove {
+    0% { top: 300px; }
+    100% { top: 0px; }
+}
+
+#faintSchool {
+    left: 500px;
+    top: 50px;
+    width: 100px;
+    animation: faintSchoolMove 10s ease-in-out infinite; 
+}
